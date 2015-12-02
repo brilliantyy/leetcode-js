@@ -19,3 +19,31 @@ var removeDuplicates = function(nums) {
         }
     }
 };
+
+/**
+ * Beats 52.63 %
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    var len = nums.length;
+    if (len == 0) {
+        return 0;
+    }
+
+    for (var i = 0, j = i + 1; j < nums.length;) {
+        if (nums[i] != nums[j]) {
+            if (j != i+1) {
+                nums[i+1] = nums[j];
+            }
+
+            i++;
+            j++;
+
+        } else {
+            j++;
+        }
+
+    }
+    return i+1;
+};
