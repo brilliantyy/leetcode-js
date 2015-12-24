@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+<script>
+var isAnagram = function(s, t) {
+    var lenOne = s.length;
+    var lenTwo = t.length;
+    
+    if (!lenOne && !lenTwo) {
+        return true;
+    } else if (lenOne != lenTwo) {
+        return false;
+    } else {
+        var a = s.split('').sort();
+        var b = t.split('').sort();
+        if (s.indexOf(t) === 0) {
+            return true;
+        }
+        return false;
+    }
+};
+</script>
+</body>
+</html>
