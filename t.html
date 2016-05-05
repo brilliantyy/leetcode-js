@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <script>
+    var reverseVowels = function(s) {
+    var s = s.split(""), len = s.length, head = 0, tail = len - 1;
+
+    for (; head < tail; head++, tail--) {
+        while(!isVowel(s[head])) {
+            head++;
+        }
+        while(!isVowel(s[tail])) {
+            tail--;
+        }
+        if (head < tail) {
+            if (s[head] == s[tail]) {
+                continue;
+            }
+            swap(s, head, tail);
+        } else {
+            break;
+        }
+    }
+    console.log(s);
+    return s.join("");
+};
+
+var isVowel = function(c) {
+    if (['a', 'e', 'i', 'o', 'u'].indexOf(c) !== -1) {
+        return true;
+    }
+    return false;
+}
+
+var swap = function(arr, a, b) {
+    var tmp = arr[a];
+    arr[a] = arr[b];
+    arr[b] = tmp;
+}
+
+reverseVowels('hello');
+</script>
+</body>
+</html>
