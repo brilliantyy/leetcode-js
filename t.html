@@ -5,43 +5,39 @@
 </head>
 <body>
     <script>
-    var reverseVowels = function(s) {
-    var s = s.split(""), len = s.length, head = 0, tail = len - 1;
+    var threeSumClosest = function(nums, target) {
+        if (nums.length <= 3) {
+            return calculate(nums);
+        }
+        nums.sort(function(a,b) {return a - b;});
+        var sum = 0, ans = nums[0] + nums[1] + nums[2], len = nums.length;
 
-    for (; head < tail; head++, tail--) {
-        while(!isVowel(s[head])) {
-            head++;
-        }
-        while(!isVowel(s[tail])) {
-            tail--;
-        }
-        if (head < tail) {
-            if (s[head] == s[tail]) {
-                continue;
+        for (var i = 0; i < len - 2; i++) {
+            var j = i + 1,
+                k = len - 1;
+            while (j < k) {
+                sum = nums[i] + nums[j] + nums[k];
+                if (Math.abs(target - sum) < Math.abs(target - ans)) {
+                    ans = sum;
+                    if (target === ans) {
+                        return ans;
+                    }
+                }
+                (sum > target) ? k-- : j++;
             }
-            swap(s, head, tail);
-        } else {
-            break;
         }
+        return ans;
+    };
+
+    var calculate = function(array) {
+        var sum = 0;
+        for (var i = 0, len = array.length; i < len; i++) {
+            sum += array[i];
+        }
+        return sum;
     }
-    console.log(s);
-    return s.join("");
-};
-
-var isVowel = function(c) {
-    if (['a', 'e', 'i', 'o', 'u'].indexOf(c) !== -1) {
-        return true;
-    }
-    return false;
-}
-
-var swap = function(arr, a, b) {
-    var tmp = arr[a];
-    arr[a] = arr[b];
-    arr[b] = tmp;
-}
-
-reverseVowels('hello');
+    threeSumClosest([13,2,0,-14,-20,19,8,-5,-13,-3,20,15,20,5,13,14,-17,-7,12,-6,0,20,-19,-1,-15,-2,8,-2,-9,13,0,-3,-18,-9,-9,-19,17,-14,-19,-4,-16,2,0,9,5,-7,-4,20,18,9,0,12,-1,10,-17,-11,16,-13,-14,-3,0,2,-18,2,8,20,-15,3,-13,-12,-2,-19,11,11,-10,1,1,-10,-2,12,0,17,-19,-7,8,-19,-17,5,-5,-10,8,0,-12,4,19,2,0,12,14,-9,15,7,0,-16,-5,16,-12,0,2,-16,14,18,12,13,5,0,5,6],
+-59);
 </script>
 </body>
 </html>
